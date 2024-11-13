@@ -94,6 +94,7 @@ pycparser==2.22
 pydantic==2.9.2
 pydantic_core==2.23.4
 Pygments==2.18.0
+Pympler==1.1
 pyparsing==3.2.0
 pyspark==3.5.3
 pytest==8.3.3
