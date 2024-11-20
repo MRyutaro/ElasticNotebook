@@ -13,6 +13,18 @@ pip install -r requirements.txt
 pip install .
 ```
 
+- 必要なデータをインストール
+
+pandas.ipynb
+
+[ここ](https://www.retrosheet.org/gamelogs/index.html)からインストールしたtxtをcsvに変えて使う。
+
+pyspark.ipynb
+
+javaのインストールが必要
+
+java --version, javac --versionでバージョンが表示されるか確認
+
 - ElasticNotebookを試す:
 
 `elastic/examples` contains 5 example notebooks (`simple`, `numpy`, `pandas`, `pyspark`, `pytorch`). Simply click 'run
