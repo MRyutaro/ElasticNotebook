@@ -44,8 +44,9 @@ def migrate(graph: DependencyGraph, shell: ZMQInteractiveShell, vss_to_migrate: 
             temp_dict[vs2].add(vs1)
         else:
             # create new entry
-            temp_dict[vs1] = {vs2}
-            temp_dict[vs2] = {vs1}
+            new_set = {vs1, vs2}
+            temp_dict[vs1] = new_set
+            temp_dict[vs2] = new_set
 
     for vs in vss_to_migrate:
         if vs not in temp_dict:
