@@ -5,14 +5,15 @@ novel live migration mechanism that is reliable, efficient, and platform-indepen
 
 ## Getting Started
 
-- Installing the package:
+- パッケージをインストールする:
 ```
-python3 -m venv .env
+python3 -m venv .venv
 source .env/bin/activate
 pip install -r requirements.txt
+pip install .
 ```
 
-- Try ElasticNotebook:
+- ElasticNotebookを試す:
 
 `elastic/examples` contains 5 example notebooks (`simple`, `numpy`, `pandas`, `pyspark`, `pytorch`). Simply click 'run
 all' to run the notebook and create the checkpoint file for the session, then use the `restore_notebook` notebook to
