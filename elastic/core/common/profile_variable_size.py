@@ -12,7 +12,12 @@ def get_total_size(data):
         if obj_id in visited:
             return 0
         visited.add(obj_id)
-        total_size = sys.getsizeof(obj)
+
+        try:
+            total_size = sys.getsizeof(obj)
+        except Exception:
+            total_size = float("inf")
+
         obj_type = type(obj)
         if obj_type in [int, float, str, bool, type(None)]:
             # if the original obj is not primitive, then the size is already included
