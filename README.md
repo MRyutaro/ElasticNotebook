@@ -13,23 +13,29 @@ pip install -r requirements.txt
 pip install .
 ```
 
-- 必要なデータをインストール
+- 環境構築
 
-pandas.ipynb
-
-[ここ](https://www.retrosheet.org/gamelogs/index.html)からインストールしたtxtをcsvに変えて使う。
-
-pyspark.ipynb
-
-javaのインストールが必要
-
-java --version, javac --versionでバージョンが表示されるか確認
+| Notebook | 必要なもの |
+| --- | --- |
+| `simple` | - |
+| `numpy` | - |
+| `pandas` | [ここ](https://www.retrosheet.org/gamelogs/index.html)からインストールしたtxtをcsvに変えて使う。 |
+| `pyspark` | javaのインストールが必要？ |
+| `pytorch` | [ここ](https://www.kaggle.com/datasets/ajayrana/hymenoptera-data)からインストールして、/examles/data/hymenoptera_dataを配置 |
 
 - ElasticNotebookを試す:
 
 `elastic/examples` contains 5 example notebooks (`simple`, `numpy`, `pandas`, `pyspark`, `pytorch`). Simply click 'run
 all' to run the notebook and create the checkpoint file for the session, then use the `restore_notebook` notebook to
 restore the session.
+
+| Notebook | うまくいったか |
+| --- | --- |
+| `simple` | yes |
+| `numpy` | yes |
+| `pandas` | yes |
+| `pyspark` | no |
+| `pytorch` | no |
 
 ## Running Experiments
 
