@@ -32,8 +32,11 @@ def checkpoint(graph: DependencyGraph, shell: ZMQInteractiveShell, fingerprint_d
 
     # Retrieve active VSs from the graph. Active VSs are correspond to the latest instances/versions of each variable.
     active_vss = set()
+    print("---------------------------")
+    print("all variables:")
     for vs_list in graph.variable_snapshots.values():
         if not vs_list[-1].deleted:
+            print(f"name: {vs_list[-1].name}")
             active_vss.add(vs_list[-1])
 
     # Profile the size of each variable defined in the current session.
@@ -83,7 +86,7 @@ def checkpoint(graph: DependencyGraph, shell: ZMQInteractiveShell, fingerprint_d
     print("---------------------------")
     print("variables to migrate:")
     for vs in vss_to_migrate:
-        print(vs.name, vs.size)
+        print(f"name: {vs.name}, size: {vs.size}")
 
     difference_start = time.time()
     vss_to_recompute = active_vss - vss_to_migrate
@@ -92,13 +95,13 @@ def checkpoint(graph: DependencyGraph, shell: ZMQInteractiveShell, fingerprint_d
     print("---------------------------")
     print("variables to recompute:")
     for vs in vss_to_recompute:
-        print(vs.name, vs.size)
+        print(f"name: {vs.name}, size: {vs.size}")
     print([vs.name for vs in vss_to_recompute])
 
     print("---------------------------")
     print("cells to recompute:")
     for ce in ces_to_recompute:
-        print(ce.cell_num, ce.cell_runtime)
+        print(f"cell num: {ce.cell_num}, cell runtime: {ce.cell_runtime}")
     print(sorted([ce.cell_num + 1 for ce in ces_to_recompute]))
 
     optimize_end = time.time()
