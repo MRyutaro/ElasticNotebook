@@ -34,6 +34,7 @@ def checkpoint(graph: DependencyGraph, shell: ZMQInteractiveShell, fingerprint_d
     active_vss = set()
     print("---------------------------")
     print("all variables:")
+    # print(graph.variable_snapshots)
     for vs_list in graph.variable_snapshots.values():
         if not vs_list[-1].deleted:
             print(f"name: {vs_list[-1].name}")
