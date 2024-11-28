@@ -37,6 +37,10 @@ restore the session.
 | `pyspark` | no |
 | `pytorch` | no |
 
+## 追実験
+
+ex_large_scale_program用のデータは[ここ](https://www.kaggle.com/code/alexisbcook/titanic-tutorial/input)から取得
+
 ## Running Experiments
 
 Our experiment directory is `elastic/experiments`. The `elastic/experiments/notebooks` directory contains all 45

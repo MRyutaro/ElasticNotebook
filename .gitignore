@@ -136,3 +136,5 @@ dmypy.json
 
 # 追加
 .linux-venv
+**/checkpoints/**
+!**/checkpoints/.gitkeep
