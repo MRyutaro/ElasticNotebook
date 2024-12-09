@@ -215,7 +215,7 @@ class ElasticNotebook():
         checkpoint(self.dependency_graph, self.shell, self.fingerprint_dict, self.selector, self.udfs,
                    filename, self.profile_dict, self.write_log_location, self.notebook_name, self.optimizer_name)
 
-    def Load_checkpoint(self, filename):
+    def load_checkpoint(self, filename):
         if self.debug:
             print("Loading checkpoint...")
 

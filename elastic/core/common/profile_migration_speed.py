@@ -21,7 +21,8 @@ def profile_migration_speed(dirname: str, alpha=1) -> float:
     total_read_time = 0
     total_write_time = 0
     for i in range(filecount):
-        write_array_large = np.random.rand(10000, 10000)
+        # write_array_large = np.random.rand(10000, 10000)
+        write_array_large = np.random.rand(500, 500)
         write_array_small = np.random.rand(100, 100)
         total_bytes += sys.getsizeof(write_array_large)
         total_bytes -= sys.getsizeof(write_array_small)
