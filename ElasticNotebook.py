@@ -85,6 +85,7 @@ class ElasticNotebook(Magics):
         for var in self.dependency_graph.variable_snapshots.keys():
             if var not in self.fingerprint_dict and var in self.shell.user_ns:
                 self.fingerprint_dict[var] = construct_fingerprint(self.shell.user_ns[var], self.profile_dict)
+        print(f"{self.fingerprint_dict=}")
 
         # Find input variables (variables potentially accessed) of the cell.
         input_variables, function_defs = find_input_vars(cell, set(self.dependency_graph.variable_snapshots.keys()),
@@ -98,6 +99,7 @@ class ElasticNotebook(Magics):
         # Run the cell.
         start_time = time.time()
         try:
+            print(f"{get_ipython()=}")
             cell_output = get_ipython().run_cell(cell)
             cell_output.raise_error()
             traceback_list = []
@@ -109,7 +111,11 @@ class ElasticNotebook(Magics):
         infer_start = time.time()
 
         # Find created and deleted variables by computing difference between namespace pre and post execution.
+        print(f"{pre_execution=}")
+        print(f"{post_execution=}")
         created_variables, deleted_variables = find_created_deleted_vars(pre_execution, post_execution)
+        print(f"{created_variables=}")
+        print(f"{deleted_variables=}")
 
         # Remove stored ID graphs for deleted variables.
         for var in deleted_variables:
@@ -119,6 +125,10 @@ class ElasticNotebook(Magics):
 
         # Find modified variables by comparing ID graphs and object hashes.
         modified_variables = set()
+        print(f"{self.fingerprint_dict=}")
+        print(f"{self.shell.user_ns=}")
+        print(f"{self.profile_dict=}")
+        print(f"{input_variables_id_graph_union=}")
         for k, v in self.fingerprint_dict.items():
             changed, overwritten = compare_fingerprint(self.fingerprint_dict[k], self.shell.user_ns[k],
                                                        self.profile_dict, input_variables_id_graph_union)
@@ -150,6 +160,8 @@ class ElasticNotebook(Magics):
         # Update the dependency graph.
         update_graph(cell, cell_runtime, start_time, input_variables, created_variables.union(modified_variables),
                      deleted_variables, self.dependency_graph)
+        print(f"{self.dependency_graph=}")
+        print(f"{self.dependency_graph.variable_snapshots=}")
 
         # Update total recordevent time tally.
         infer_end = time.time()
