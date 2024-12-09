@@ -4,6 +4,7 @@ import sys, traceback
 import time
 import types
 from os.path import dirname
+from io import StringIO
 from pympler import asizeof
 
 from IPython import get_ipython
@@ -95,7 +96,12 @@ class ElasticNotebook():
             if var in self.fingerprint_dict:
                 input_variables_id_graph_union = input_variables_id_graph_union.union(self.fingerprint_dict[var][1])
 
-        # Run the cell.
+        # これをしないとセルで2回printされてしまう
+        captured_stdout = StringIO()
+        original_stdout = sys.stdout
+        sys.stdout = captured_stdout
+
+        # セルの実行
         start_time = time.time()
         try:
             cell_output = get_ipython().run_cell(cell)
@@ -155,6 +161,9 @@ class ElasticNotebook():
         # Update total recordevent time tally.
         infer_end = time.time()
         self.total_recordevent_time += infer_end - infer_start
+
+        # 標準出力を元に戻す
+        sys.stdout = original_stdout
 
     def set_migration_speed(self, migration_speed):
         try:
